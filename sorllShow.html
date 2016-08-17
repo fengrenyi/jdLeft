@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+.long{width:500px; height:1200px; background: #ccc;}
+.long2{width:500px; height:500px;  background: #ddd;}
+span{display:block; padding:8px 0 8px 26px; background:url(gray.gif) left center no-repeat; font-size:25px;}
+</style>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+  <div class="long">
+  此处是缓冲区
+  </div>
+  <div class="long2">
+      <span>1F</span>
+  </div>
+  <div class="long2">
+      <span>2F</span>
+  </div>
+  <div class="long2">
+      <span>3F</span>
+  </div>
+</body>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+	    $(window).scroll(function(){
+	      $("span","div").each(function(i) {
+	          var win_h = $(window).height();
+	          var win_t = $(window).scrollTop();
+	          var span_t = $(this).offset().top;
+	          if( win_h/2 + win_t >= span_t )
+	          $(this).css("background","url(green.gif) left center no-repeat");
+	      });    
+	    })
+})
+
+// $(function(){
+//     var changeIcon = function(elm){
+//         //触发事件
+//         var win_h = $(window).height();
+//         var win_t = $(window).scrollTop();
+//         var span_t = $(elm).offset().top;
+//         if( win_h/2 + win_t >= span_t )
+//         $(elm).css("background","url(green.gif) left center no-repeat");
+//     }
+    
+    
+//     $(window).on("scroll resize", function(){
+//       $("span","div").each(function(i,e) {
+//           changeIcon(e);
+//       });    
+//     })
+
+// })	
+</script>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>楼层滚动</title>
+<style type="text/css">
+	*{padding: 0px; margin: 0px;}
+	.mente{position: fixed; top: 10%; left: 30px;}
+	.mente ul{}
+	.mente ul li{width: 50px; font-size: 14px; background: #000; color: #fff;margin-top:2px; text-align: center; padding: 10px;}
+	.centent{width: 1100px; margin: 0 auto; }
+	#f1{height: 500px; background: red;}
+	#f2{height: 600px; background: yellow;}
+	#f3{height: 800px; background: blue;}
+	#f4{height: 200px; background: green;}
+	#f5{height: 500px; background: #ddd;}
+	#f6{height: 700px; background: #41100d;}
+	#f7{height: 400px; background: #eee;}
+	#f8{height: 900px; background: #ef4f1d;}
+	#f9{height: 1000px; background: #effdf5;}
+	#f10{height: 1500px; background: red;}
+</style>
+</head>
+<body>
+<!-- 左侧 nav-->
+<div class="mente">
+<span id="btn">00</span>
+	<ul>
+	
+		<li>1f</li>
+		<li>2f</li>
+		<li>3f</li>
+		<li>4f</li>
+		<li>5f</li>
+		<li>6f</li>
+		<li>7f</li>
+		<li>8f</li>
+		<li>9f</li>
+		<li>10f</li>
+	</ul>
+</div>
+
+<!-- 内容楼层 -->
+<div class="centent">
+	<div class="f1" id="f1"></div>
+	<div class="f2" id="f2"></div>
+	<div class="f3" id="f3"></div>
+	<div class="f4" id="f4"></div>
+	<div class="f5" id="f5"></div>
+	<div class="f6" id="f6"></div>
+	<div class="f7" id="f7"></div>
+	<div class="f8" id="f8"></div>
+	<div class="f9" id="f9"></div>
+	<div class="f10" id="f10"></div>
+	<div id="bb" style=" background:yellow; ">sdsd</div>
+	<input type="hidden" name="operate"  />
+</div>
+<div id="div1" style="border:1px #ff9966 dashed;width:400;height:100px;overflow-x:hidden;overflow-y:scroll">
+</div>
+<input type="text" id="inp" style="width:300">
+<input type="button" onclick="sendText()" value="发送">
+<br/>
+<br/>
+<br/>
+<input type="text" id="keysecher"  />
+</body>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		     var  _index  = 0;
+		   $(".mente ul li").click(function(){
+			  _index = $(this).index() + 1;
+			var _top = $("#f" + _index).offset().top;
+			$("body,html").animate({scrollTop:_top},500);
+		})
+	})
+
+	//发送滚动
+	function sendText(){
+		var e=document.getElementById("div1")
+		var inp=document.getElementById("inp")
+		e.innerText=e.innerText+"\n"+inp.value;
+		e.scrollTop=e.scrollHeight;
+   }
+	function sc(){
+		var e=document.getElementById("div1")
+		e.scrollTop=e.scrollHeight;
+	}
+   var s=setInterval("sc()",500);
+
+   $("#btn").click(function(){
+   	window.location.href = "#bb";
+   })
+
+	//判断enter按下
+	$("#keysecher").keyup(function(event){
+    if(event.keyCode ==13){
+     console.log("按下")
+  }
+});	
+</script>
+</html>
